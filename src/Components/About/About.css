@@ -1,0 +1,26 @@
+#about-us {
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+#about-us:hover {
+    transform: scale(1.02);
+}
+
+h2 {
+    font-family: "Poppins", sans-serif;
+}
+
+p {
+    line-height: 1.8;
+}
+
+.btn-primary {
+    transition: 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}

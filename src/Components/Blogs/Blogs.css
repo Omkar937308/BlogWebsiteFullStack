@@ -1,0 +1,85 @@
+.blogs {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.blogs h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+.blogs h2:after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: #3498db;
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+.blogs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.blog-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.blog-card a {
+    text-decoration: none;
+    display: block;
+}
+
+.blog-title {
+    color: #2c3e50;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.blog-card:hover .blog-title {
+    color: #3498db;
+}
+
+.error {
+    color: #e74c3c;
+    text-align: center;
+    margin: 20px 0;
+    padding: 15px;
+    background: #fdf0ed;
+    border-radius: 8px;
+    border: 1px solid #fadbd8;
+}
+
+button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: block;
+    margin: 20px auto;
+}
+
+button:hover {
+    background: #2980b9;
+}

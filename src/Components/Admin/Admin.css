@@ -1,0 +1,97 @@
+.admin-panel {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-panel h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-panel form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-panel input,
+.admin-panel textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.admin-panel textarea {
+    height: 120px;
+    resize: none;
+}
+
+.admin-panel input[type="file"] {
+    padding: 5px;
+}
+
+.admin-panel button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-panel button:hover {
+    background-color: #0056b3;
+}
+
+.blog-list {
+    margin-top: 30px;
+}
+
+.blog-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.blog-card h4 {
+    margin-bottom: 10px;
+}
+
+.blog-card p.blog-content {
+    white-space: pre-wrap;
+    /* Ensures new lines are displayed */
+}
+
+/* Admin login style */
+
+.admin-login {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6b73ff, #000dff);
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.card {
+    border-radius: 10px;
+    background: #fff;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, #007bff, #0056d2);
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, #0056d2, #0036a1);
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+}

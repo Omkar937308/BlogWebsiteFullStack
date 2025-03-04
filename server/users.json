@@ -1,0 +1,12 @@
+{
+  "users": [
+    {
+      "id": "1737627829082",
+      "username": "Aditya Chavhan",
+      "email": "chavhanshivaji50@gmail.com",
+      "password": "aditya@",
+      "isAdmin": false,
+      "createdAt": "2025-01-23T10:23:49.082Z"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+#contact-us {
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    border-radius: 10px;
+}
+
+h2 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-primary {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+input.is-invalid,
+textarea.is-invalid {
+    border-color: #dc3545;
+}
+
+.alert-success {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+form input,
+form textarea {
+    transition: all 0.2s;
+}
+
+form input:focus,
+form textarea:focus {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}

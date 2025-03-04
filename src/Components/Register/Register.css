@@ -1,0 +1,12 @@
+.custom-pink-button {
+    background-color: #ff69b4;
+    /* Pink color */
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.custom-pink-button:hover {
+    background-color: #ff85c1;
+    /* Lighter pink for hover */
+}

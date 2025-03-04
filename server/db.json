@@ -1,0 +1,11 @@
+{
+  "blogs": [
+    {
+      "_id": "m696s7dot1n16ezsfij",
+      "title": "What is React",
+      "content": "React is an a javascript framework used to building of UI of the web sites",
+      "image": null,
+      "createdAt": "2025-01-23T10:24:53.340Z"
+    }
+  ]
+}
