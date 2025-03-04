@@ -103,7 +103,7 @@ export default function About() {
 
 
                 <NavLink to="/Register" className="btn btn-success mt-3 animate__animated animate__zoomIn animate__delay-2s lyt">
-                    Sign Up Now
+                    Sign Up
                 </NavLink>
             </div>
         </section >
