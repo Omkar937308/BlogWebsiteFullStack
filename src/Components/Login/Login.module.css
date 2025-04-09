@@ -1,128 +1,95 @@
-/* Login.module.css */
-
-
-:root {
-    --login-font-family: Arial, sans-serif;
-    --login-bg-gradient: linear-gradient(135deg, #ff7eb3, #ff758c);
-    --login-container-bg: #fff;
-    --login-container-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    --login-input-border: #ddd;
-    --login-focus-border: #ff758c;
-    --login-button-bg: #ff758c;
-    --login-button-hover-bg: #ff5a72;
-    --login-text-color: #333;
-    --login-label-color: #555;
-    --login-link-color: #ff758c;
-}
-
-.login-body {
-    font-family: var(--login-font-family);
-    margin: 0;
-    padding: 0;
-    background: var(--login-bg-gradient);
+.page {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    height: 100vh;
+    background-color: #f8f9fa;
+    padding: 20px;
 }
 
-.login-box {
+.formContainer {
     width: 100%;
-    max-width: 500px;
-    background: var(--login-container-bg);
+    max-width: 400px;
+    background-color: white;
     padding: 30px;
-    border-radius: 10px;
-    box-shadow: var(--login-container-shadow);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-.login-title {
+.title {
     text-align: center;
-    color: var(--login-text-color);
-    margin-bottom: 25px;
-}
-
-.form-group {
     margin-bottom: 20px;
+    color: #333;
+    font-weight: bold;
 }
 
-.form-group label {
+.formGroup {
+    margin-bottom: 18px;
+}
+
+.formGroup label {
     display: block;
-    margin-bottom: 8px;
-    color: var(--login-label-color);
-    font-weight: 500;
+    margin-bottom: 6px;
+    color: #555;
+    font-size: 15px;
 }
 
-.form-control {
+.input {
     width: 100%;
     padding: 12px;
-    border: 1px solid var(--login-input-border);
-    border-radius: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
     font-size: 16px;
     transition: border-color 0.3s ease;
 }
 
-.form-control:focus {
-    border-color: var(--login-focus-border);
+.input:focus {
+    border-color: #007bff;
     outline: none;
 }
 
-.login-button {
+.button {
     width: 100%;
-    padding: 15px;
-    background-color: var(--login-button-bg);
-    border: none;
-    border-radius: 5px;
+    padding: 12px;
+    background-color: #007bff;
     color: white;
-    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.login-button:hover {
-    background-color: var(--login-button-hover-bg);
+.button:hover {
+    background-color: #0056b3;
 }
 
-.login-button:disabled {
+.button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
 }
 
-.error-message {
-    background-color: #ffebee;
+.error {
+    background-color: #ffe0e0;
     color: #c62828;
     padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+    border-radius: 6px;
+    margin-bottom: 16px;
     text-align: center;
+    font-weight: 500;
 }
 
-.additional-links {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 15px;
+.linkText {
+    text-align: center;
+    margin-top: 16px;
+    font-size: 14px;
 }
 
-.additional-links a {
-    color: var(--login-link-color);
+.linkText a {
+    color: #007bff;
     text-decoration: none;
 }
 
-.additional-links a:hover {
+.linkText a:hover {
     text-decoration: underline;
-}
-
-@media (max-width: 480px) {
-    .login-box {
-        padding: 20px;
-    }
-    
-    .form-control {
-        font-size: 14px;
-        padding: 10px;
-    }
-    
-    .login-button {
-        padding: 12px;
-        font-size: 16px;
-    }
 }

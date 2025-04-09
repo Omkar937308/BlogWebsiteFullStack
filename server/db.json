@@ -1,11 +1,12 @@
 {
   "blogs": [
     {
-      "_id": "m696s7dot1n16ezsfij",
+      "_id": "m99wfpr1iyi1w7eixw",
       "title": "What is React",
-      "content": "React is an a javascript framework used to building of UI of the web sites",
+      "content": "React is an a javascript framework used to building of UI of the web sites and as well as user in ui design and as well",
       "image": null,
-      "createdAt": "2025-01-23T10:24:53.340Z"
+      "createdAt": "2025-04-09T12:22:07.645Z",
+      "updatedAt": "2025-04-09T12:38:22.567Z"
     }
   ]
 }

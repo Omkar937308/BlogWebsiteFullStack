@@ -5,6 +5,7 @@ import "./Admin.css";
 export default function Admin() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [passwordInput, setPasswordInput] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [image, setImage] = useState(null);
@@ -12,8 +13,14 @@ export default function Admin() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [editId, setEditId] = useState(null);
+    const [message, setMessage] = useState("");
 
     const defaultPassword = "aditya@";
+
+    const showToast = (msg) => {
+        setMessage(msg);
+        setTimeout(() => setMessage(""), 3000);
+    };
 
     const handleLogin = () => {
         if (passwordInput === defaultPassword) {
@@ -32,17 +39,13 @@ export default function Admin() {
     const fetchBlogs = async () => {
         try {
             setLoading(true);
-            setError(null);
-            const response = await fetch('http://localhost:5001/api/blogs');
-            if (!response.ok) {
-                throw new Error('Failed to fetch blogs');
-            }
+            const response = await fetch("http://localhost:5001/api/blogs");
+            if (!response.ok) throw new Error("Failed to fetch blogs");
+
             const data = await response.json();
             setBlogs(Array.isArray(data) ? data : []);
         } catch (error) {
-            console.error('Error fetching blogs:', error);
             setError(error.message);
-            setBlogs([]);
         } finally {
             setLoading(false);
         }
@@ -56,86 +59,88 @@ export default function Admin() {
             return;
         }
 
+        const blogData = {
+            title,
+            content,
+            image,
+        };
+
+        if (editId) {
+            blogData._id = editId;
+        }
+
         try {
             setLoading(true);
-            setError(null);
-            const response = await fetch('http://localhost:5001/api/blogs', {
-                method: 'POST',
-                headers: { 
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+            const method = editId ? "PUT" : "POST";
+            const url = editId
+                ? `http://localhost:5001/api/blogs/${editId}`
+                : "http://localhost:5001/api/blogs";
+
+            const response = await fetch(url, {
+                method,
+                headers: {
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    title,
-                    content,
-                    image: image || null
-                })
+                body: JSON.stringify(blogData),
             });
 
             if (!response.ok) {
                 const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to save blog');
+                throw new Error(errorData.message || "Failed to save blog");
             }
 
-            const data = await response.json();
-            await fetchBlogs();
+            showToast(editId ? "✅ Blog updated!" : "✅ Blog added!");
             setTitle("");
             setContent("");
             setImage(null);
-            alert('Blog saved successfully!');
-        } catch (error) {
-            console.error('Error saving blog:', error);
-            alert(error.message || 'Error saving blog. Please try again.');
+            setEditId(null);
+            fetchBlogs();
+        } catch (err) {
+            alert(err.message || "Something went wrong!");
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleCancelEdit = () => {
+        setTitle("");
+        setContent("");
+        setImage(null);
+        setEditId(null);
     };
 
     const handleImageChange = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
 
-        reader.onloadend = () => {
-            setImage(reader.result);
-        };
-
-        if (file) {
-            reader.readAsDataURL(file);
-        }
+        reader.onloadend = () => setImage(reader.result);
+        if (file) reader.readAsDataURL(file);
     };
 
-    const handleEdit = async (blog) => {
-        try {
-            setTitle(blog.title);
-            setContent(blog.content);
-            setImage(blog.image);
-            setEditId(blog._id);
-        } catch (error) {
-            console.error('Error setting up edit:', error);
-            alert('Error preparing blog for edit. Please try again.');
-        }
+    const handleEdit = (blog) => {
+        setTitle(blog.title);
+        setContent(blog.content);
+        setImage(blog.image);
+        setEditId(blog._id);
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     const handleDelete = async (id) => {
+        const confirmed = window.confirm("Are you sure you want to delete this blog?");
+        if (!confirmed) return;
+
         try {
             setLoading(true);
             const response = await fetch(`http://localhost:5001/api/blogs/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Accept': 'application/json'
-                }
+                method: "DELETE",
             });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.message || 'Failed to delete blog');
-            }
+            if (!response.ok) throw new Error("Failed to delete blog");
 
-            await fetchBlogs();
-            alert('Blog deleted successfully!');
-        } catch (error) {
-            console.error('Error deleting blog:', error);
-            alert(error.message || 'Error deleting blog. Please try again.');
+            showToast("🗑️ Blog deleted!");
+            fetchBlogs();
+        } catch (err) {
+            alert(err.message || "Error deleting blog");
         } finally {
             setLoading(false);
         }
@@ -143,25 +148,33 @@ export default function Admin() {
 
     if (!isAuthenticated) {
         return (
-            <div className="admin-login d-flex justify-content-center align-items-center">
-                <div className="card p-4 shadow-lg" style={{ width: "400px" }}>
-                    <h2 className="text-center mb-4">Admin Login</h2>
+            <div className="admin-login">
+                <div className="card p-4 shadow login-card">
+                    <h2 className="text-center mb-4">🔐 Admin Login</h2>
                     <div className="form-group">
                         <label htmlFor="passwordInput" className="form-label">
-                            Enter Only Password
+                            Enter Password
                         </label>
-                        <br />
-                        <input
-                            id="passwordInput"
-                            type="password"
-                            className="form-control"
-                            placeholder="Enter Password"
-                            value={passwordInput}
-                            onChange={(e) => setPasswordInput(e.target.value)}
-                        />
+                        <div className="input-group">
+                            <input
+                                id="passwordInput"
+                                type={showPassword ? "text" : "password"}
+                                className="form-control"
+                                placeholder="Enter Password"
+                                value={passwordInput}
+                                onChange={(e) => setPasswordInput(e.target.value)}
+                            />
+                            <button
+                                type="button"
+                                className="btn btn-outline-secondary toggle-password"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? "🙈" : "👁️"}
+                            </button>
+                        </div>
                     </div>
                     <button
-                        className="btn btn-primary btn-block mt-3"
+                        className="btn btn-primary btn-block mt-3 w-100"
                         onClick={handleLogin}
                     >
                         Login
@@ -173,7 +186,10 @@ export default function Admin() {
 
     return (
         <div className="admin-panel">
-            <h2>Blogs</h2>
+            <h2>{editId ? "✏️ Edit Blog" : "📝 Add New Blog"}</h2>
+
+            {message && <div className="toast-message">{message}</div>}
+
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
@@ -187,15 +203,27 @@ export default function Admin() {
                     value={content}
                     onChange={(e) => setContent(e.target.value)}
                     required
-                ></textarea>
+                />
                 <input type="file" accept="image/*" onChange={handleImageChange} />
-                <button type="submit" disabled={loading}>
-                    {editId ? "Update Blog" : "Add Blog"}
-                </button>
+
+                <div className="form-actions">
+                    <button type="submit" disabled={loading}>
+                        {editId ? "Update Blog" : "Add Blog"}
+                    </button>
+                    {editId && (
+                        <button
+                            type="button"
+                            onClick={handleCancelEdit}
+                            className="cancel-btn"
+                        >
+                            Cancel
+                        </button>
+                    )}
+                </div>
             </form>
 
             <div className="blog-list">
-                <h3>Blog List</h3>
+                <h3>📚 Blog List</h3>
                 {loading ? (
                     <p>Loading...</p>
                 ) : error ? (
@@ -204,19 +232,20 @@ export default function Admin() {
                     <p>No blogs available</p>
                 ) : (
                     blogs.map((blog) => (
-                        <div className="blog-card" key={blog._id}>
+                        <div className="blog-card fade-in" key={blog._id}>
                             <h4>{blog.title}</h4>
                             <p className="blog-content">{blog.content}</p>
                             {blog.image && (
                                 <img
                                     src={blog.image}
                                     alt={blog.title}
-                                    style={{ width: "100%", height: "auto", marginTop: "10px" }}
+                                    className="blog-img"
+                                    style={{ maxWidth: "100%", borderRadius: "5px" }}
                                 />
                             )}
-                            <div className="blog-actions"><br />
-                                <button onClick={() => handleEdit(blog)} disabled={loading}>Edit</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                <button onClick={() => handleDelete(blog._id)} disabled={loading}>Delete</button>
+                            <div className="blog-actions">
+                                <button onClick={() => handleEdit(blog)}>Edit</button>
+                                <button onClick={() => handleDelete(blog._id)}>Delete</button>
                             </div>
                         </div>
                     ))
@@ -224,4 +253,4 @@ export default function Admin() {
             </div>
         </div>
     );
-};
+}

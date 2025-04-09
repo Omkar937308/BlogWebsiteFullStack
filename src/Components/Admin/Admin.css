@@ -6,6 +6,7 @@
     border-radius: 8px;
     background-color: #f9f9f9;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
 }
 
 .admin-panel h2 {
@@ -25,6 +26,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 1rem;
 }
 
 .admin-panel textarea {
@@ -37,16 +39,32 @@
 }
 
 .admin-panel button {
-    padding: 10px;
+    padding: 10px 16px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background 0.3s ease;
 }
 
 .admin-panel button:hover {
     background-color: #0056b3;
+}
+
+.cancel-btn {
+    background-color: #dc3545;
+}
+
+.cancel-btn:hover {
+    background-color: #b92a2a;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .blog-list {
@@ -59,29 +77,137 @@
     background-color: #fff;
     padding: 15px;
     margin-bottom: 15px;
+    transition: all 0.3s ease;
+    animation: blogFade 0.5s ease;
 }
 
 .blog-card h4 {
     margin-bottom: 10px;
+    font-size: 1.2rem;
 }
 
 .blog-card p.blog-content {
     white-space: pre-wrap;
-    /* Ensures new lines are displayed */
+    margin-bottom: 10px;
 }
 
-/* Admin login style */
+.blog-card img.blog-img {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-top: 10px;
+}
 
+.blog-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.blog-actions button {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+}
+
+.blog-actions button:nth-child(1) {
+    background-color: #17a2b8;
+}
+
+.blog-actions button:nth-child(1):hover {
+    background-color: #128aa3;
+}
+
+.blog-actions button:nth-child(2) {
+    background-color: #dc3545;
+}
+
+.blog-actions button:nth-child(2):hover {
+    background-color: #b02a37;
+}
+
+/* Toast Notification */
+.toast-message {
+    background: #28a745;
+    color: white;
+    padding: 10px 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+    animation: fadeIn 0.5s ease-in-out;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blogFade {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Admin login */
 .admin-login {
     min-height: 100vh;
-    background: linear-gradient(135deg, #6b73ff, #000dff);
-    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
     font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #e0f7ff, #f4faff);
+    padding: 20px;
 }
 
 .card {
     border-radius: 10px;
     background: #fff;
+}
+
+/* Login enhancements */
+.login-card {
+    width: 100%;
+    max-width: 400px;
+    animation: slideInUp 0.6s ease-out;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideInUp {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.toggle-password {
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0 12px;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.25);
 }
 
 .btn-primary {
