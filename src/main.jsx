@@ -11,6 +11,7 @@ import Home from "./Components/Home/Home.jsx";
 import Register from "./Components/Register/Register.jsx";
 import Admin from "./Components/Admin/Admin.jsx";
 import BlogDetail from "./Components/Blogs/BlogDetail.jsx";
+import Dashboard from "./Components/Dashboard/Dashboard.jsx";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "Admin",
         element: <Admin />,
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
       },
     ],
   },

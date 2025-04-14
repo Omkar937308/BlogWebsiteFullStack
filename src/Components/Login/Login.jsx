@@ -8,6 +8,13 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    // Check if user is already logged in
+    useEffect(() => {
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            navigate('/dashboard');
+        }
+    }, [navigate]);
+
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
         setError('');
@@ -29,6 +36,10 @@ const Login = () => {
 
             if (!response.ok) throw new Error(data.error || 'Login failed');
 
+            // Store user data and login status in localStorage
+            localStorage.setItem('user', JSON.stringify(data));
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('isAdmin', data.isAdmin ? 'true' : 'false');
             alert('Login successful!');
             navigate('/dashboard');
         } catch (err) {
