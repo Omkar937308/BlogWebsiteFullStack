@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './Register.module.css';
 
 const Register = () => {
+    // Check if user is already logged in
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        if (localStorage.getItem('isLoggedIn') === 'true') {
+            navigate('/dashboard');
+        }
+    }, [navigate]);
+
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -11,7 +20,6 @@ const Register = () => {
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });

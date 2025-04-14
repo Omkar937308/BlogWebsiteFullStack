@@ -3,10 +3,19 @@
     {
       "_id": "m99wfpr1iyi1w7eixw",
       "title": "What is React",
-      "content": "React is an a javascript framework used to building of UI of the web sites and as well as user in ui design and as well",
+      "content": "React is an a javascript framework used to building of UI of the web sites and as well as user in ui design and as well how",
       "image": null,
       "createdAt": "2025-04-09T12:22:07.645Z",
-      "updatedAt": "2025-04-09T12:38:22.567Z"
+      "updatedAt": "2025-04-14T05:06:44.196Z"
+    },
+
+    {
+      "_id": "adkfjasldjas",
+      "title": "What is javascript",
+      "content": "React is an a javascript framework used to building of UI of the web sites and as well as user in ui design and as well how",
+      "image": null,
+      "createdAt": "2025-04-09T12:22:07.645Z",
+      "updatedAt": "2025-04-14T05:06:44.196Z"
     }
   ]
 }
