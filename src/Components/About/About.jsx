@@ -113,7 +113,7 @@ export default function About() {
 // Team data for reusability
 const teamData = [
     {
-        name: "Aditya Chavhan",
+        name: "Omkar Babhale ",
         role: "Founder & Editor-in-Chief",
         image: "https://via.placeholder.com/150"
     },
